@@ -1,14 +1,12 @@
-FROM node:alpine3.22
+FROM node:20-alpine3.20
 
 WORKDIR /app
 
-COPY index.js index.html package.json ./
+COPY index.js package.json index.html ./
 
-EXPOSE 3000/tcp
+EXPOSE 3000
 
-RUN apk update && apk upgrade &&\
-    apk add --no-cache openssl curl gcompat iproute2 coreutils &&\
-    apk add --no-cache bash &&\
+RUN apk update && apk add --no-cache bash openssl curl &&\
     chmod +x index.js &&\
     npm install
 
