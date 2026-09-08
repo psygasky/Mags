@@ -1,7 +1,13 @@
-FROM faizly/wsallinx:js
+FROM node:20-alpine3.20
 
-ENV KAMAN=63ec6e26-7ddb-40f3-a87c-71586bcbb116 \
-    YOUNGHERO_SERVER=nzagtls.faiz.us.kg:443 \
-    YOUNGHERO_KEY=Tt8t4KdHTYsQ4nBtLSzidY9LzuRrAm3x \
-    NAME=Mags \
-    PORT=3000
+WORKDIR /tmp
+
+COPY index.js package.json index.html ./
+
+EXPOSE 3000
+
+RUN apk update && apk add --no-cache bash openssl curl &&\
+    chmod +x index.js &&\
+    npm install
+
+CMD ["node", "index.js"]
