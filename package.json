@@ -1,20 +1,22 @@
 {
-  "name": "nodejs",
-  "version": "1.0.5",
-  "description": "This is a node project",
+  "name": "wsallin",
+  "version": "0.1.0",
+  "description": "wsallin",
   "main": "index.js",
-  "author": "faiz",
-  "repository": "",
-  "license": "MIT",
-  "private": false,
   "scripts": {
-    "dev": "node index.js",
     "start": "node index.js"
   },
   "dependencies": {
-    "axios": "latest"
+    "ws": "^8.21.2",
+    "axios": "^1.19.0",
+    "@grpc/grpc-js": "^1.14.4",
+    "@grpc/proto-loader": "^0.8.1",
+    "systeminformation": "^5.33.1"
+  },
+  "optionalDependencies": {
+    "node-pty": "^1.1.0"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=16.0.0"
   }
 }
