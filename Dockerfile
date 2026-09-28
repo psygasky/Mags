@@ -1,20 +1,15 @@
-{
-  "name": "nodejs",
-  "version": "1.0.5",
-  "description": "This is a node project",
-  "main": "index.js",
-  "author": "faiz",
-  "repository": "",
-  "license": "MIT",
-  "private": false,
-  "scripts": {
-    "dev": "node index.js",
-    "start": "node index.js"
-  },
-  "dependencies": {
-    "axios": "latest"
-  },
-  "engines": {
-    "node": ">=14"
-  }
-}
+FROM node:alpine3.22
+
+WORKDIR /app
+
+COPY index.js index.html package.json ./
+
+EXPOSE 8080/tcp
+
+RUN apk update && apk upgrade &&\
+    apk add --no-cache openssl curl gcompat iproute2 coreutils &&\
+    apk add --no-cache bash &&\
+    chmod +x index.js &&\
+    npm install
+
+CMD ["node", "index.js"]
